@@ -14,3 +14,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf");
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,94 @@
+.hero {
+    width: 100%;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+
+    margin: 50px 200px;
+
+    text-align: center;
+}
+
+.subcontainer {
+    display: flex;
+    justify-content: center;
+
+    font-family: "Poppins";
+    font-size: 1.15rem;
+
+    margin: 25px;
+}
+
+.reminisceButton {
+    font-family: "Poppins Bold";
+    font-size: 1.25rem;
+
+    background-color: #FFF;
+
+    border: 2px solid black;
+    outline: none;
+
+    padding: 10px 25px;
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.reminisceButton:hover {
+    color: #FFF;
+    background-color: #000;
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.lineParent {
+    margin: 50px 100px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+.lineParent::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: 1px solid black;
+    background: black;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+.lineContainer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.textBold {
+    font-family: "Poppins Bold";
+    font-size: 1.35rem;
+}
+
+.textReg {
+    font-family: "Poppins";
+    font-size: 1.35rem;
+}
+
+.creditsContainerRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: left;
+
+    margin: 40px auto 80px;
+}
+
+.creditsContainerName {
+    margin-left: 30px;
+}

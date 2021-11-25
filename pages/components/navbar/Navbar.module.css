@@ -1,0 +1,38 @@
+.navContainer {
+    display: flex;
+
+    background-color: transparent;
+
+    float: right;
+
+    position: sticky;
+    z-index: 2;
+
+    top: 0;
+
+    padding: 30px 80px;
+
+    font-size: 1.35rem;
+}
+
+.innerContainer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid black;
+}
+
+.navItemBold {
+    font-family: "Poppins Bold";
+
+    margin: 0px 40px;
+}
+
+.navItemNormal {
+    font-family: "Poppins";
+
+    margin: 0px 40px;
+}
