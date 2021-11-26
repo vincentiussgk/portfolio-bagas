@@ -7,7 +7,7 @@ const About = () => {
             <img src="AboutHero.png" className={styles.hero} />
             <div className={styles.contentContainer}>
                 <div className={styles.subcontainer}>
-                    <img src="FeelAsThough.png" />
+                    <img src="FeelAsThough.png" className={styles.feelImage} />
                 </div>
                 <div className={styles.subcontainer}>
                     <button className={styles.reminisceButton}>
@@ -44,7 +44,7 @@ const About = () => {
                         Artist
                     </div>
                     <div className={styles.creditsContainerRow}>
-                        <img src="BagasPhoto.png" />
+                        <img src="BagasPhoto.png" className={styles.creditPhoto} />
                         <div className={styles.creditsContainerName}>
                             <span className={styles.textBold}>Bagas Mahardika</span> <br/>
                             <span className={styles.textReg}>Artist, Performer</span>
@@ -56,12 +56,41 @@ const About = () => {
                         Collaborator
                     </div>
                     <div className={styles.creditsContainerRow}>
-                        <img src="QanissaPhoto.png" />
+                        <img src="QanissaPhoto.png" className={styles.creditPhoto} />
                         <div className={styles.creditsContainerName}>
                             <span className={styles.textBold}>Qanissa Aghara</span> <br/>
                             <span className={styles.textReg}>Director of Photography</span>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <div className={styles.textBold}>
+                        Web Developers
+                    </div>
+                    <div className={styles.creditsContainerNameRow}>
+                        <div className={styles.creditsContainerName} style={{margin:"20px 0px"}}>
+                            <span className={styles.textBold}>Samuel Gondokusumo</span> <br/>
+                            <span className={styles.textReg}>Web Developer</span>
+                        </div>
+                        <div className={styles.creditsContainerName} style={{margin:"20px 0px"}}>
+                            <span className={styles.textBold}>Gregorius Dimas</span> <br/>
+                            <span className={styles.textReg}>Web Developer</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className={styles.textBold}>
+                        Special Thanks
+                    </div>
+                    <div className={styles.textThanks}>
+                        Dosen Pengajar Seni di Ruang Publik I <br/>
+                        Visual Art Student Aggregate ‘VASA-ITB’ <br/>
+                        RUPA/MAYA <br/>
+                        Institut Teknologi Bandung
+                    </div>
+                </div>
+                <div>
+                    <img src="LogoITB.png"/>
                 </div>
             </div>
         </div>

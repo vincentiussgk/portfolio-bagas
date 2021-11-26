@@ -76,10 +76,17 @@
 
 .textReg {
     font-family: "Poppins";
-    font-size: 1.35rem;
+    font-size: 1rem;
 }
 
-.creditsContainerRow {
+.textThanks {
+    font-family: "Poppins Bold";
+    font-size: 1rem;
+
+    margin: 40px 0px 120px;
+}
+
+.creditsContainerRow, .creditsContainerNameRow {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,6 +96,108 @@
     margin: 40px auto 80px;
 }
 
+.creditsContainerNameRow {
+    text-align: center;
+    justify-content: space-around;
+}
+
 .creditsContainerName {
     margin-left: 30px;
+}
+
+@media only screen and (max-width: 992px) {
+    .contentContainer {   
+        margin: 50px 100px;
+    
+    }
+
+    .creditsContainerNameRow {
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .contentContainer {   
+        margin: 50px;
+    
+    }
+
+    .creditsContainerNameRow {
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .feelImage {
+        width: 392px;
+        height: 234.5px;
+    }
+
+    .subcontainer {
+        font-size: 1rem;
+    
+    }
+
+    .reminisceButton {
+        font-size: 1rem;
+    
+        padding: 5px 15px;
+    }
+
+    .textBold {
+        font-size: 1.25rem;
+    }
+    
+    .textReg {
+        font-size: 0.9rem;
+    }
+
+    .textThanks {
+        font-size: 0.9rem;
+    
+    }
+
+    .creditsContainerNameRow {
+        flex-direction: column;
+    }
+
+    .creditPhoto {
+        width: 175px;
+        height: 175px;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    .feelImage {
+        width: 274.4px;
+        height: 164.15px;
+    }
+    
+    .contentContainer {
+        margin: 50px 30px;
+    }
+
+    .subcontainer {
+        font-size: 0.9rem;
+    
+    }
+
+    .textBold {
+        font-size: 1.15rem;
+    }
+    
+    .textReg {
+        font-size: 0.86rem;
+    }
+
+    .textThanks {
+        font-size: 0.86rem;
+    
+    }
+
+    .creditPhoto {
+        width: 140px;
+        height: 140px;
+    }
 }

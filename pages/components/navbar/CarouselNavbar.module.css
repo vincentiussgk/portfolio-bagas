@@ -16,6 +16,11 @@
     font-size: 1.35rem;
 }
 
+.wrapperContainer {
+    display: none;
+}
+
+
 .innerContainer {
     display: flex;
 
@@ -31,6 +36,9 @@
 
     margin: 0px 40px;
     color: white;
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
 
 .navItemNormal {
@@ -38,4 +46,70 @@
 
     margin: 0px 40px;
     color: white;
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.navItemBold:hover, .navItemNormal:hover {
+    color: #000;
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+@media only screen and (max-width: 992px) {
+    .navContainer {   
+        padding: 30px 60px;
+    
+        font-size: 1.2rem;
+    }
+
+    .navItemBold, .navItemNormal {
+        margin: 0px 30px;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .navContainer {   
+        padding: 20px 40px;
+    
+        font-size: 1.1rem;
+    }
+
+    .navItemBold, .navItemNormal {
+        margin: 0px 20px;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    .navContainer {   
+        padding: 0px;
+        height: 50px;
+    }
+
+    .navItemBold, .navItemNormal {
+        display: none;
+    }
+
+    .wrapperContainer {
+        display: block;
+    }
+
+    .menuItem {
+        font-family: "Poppins Bold";
+
+        margin: 10px 0px;
+
+        color: #FFF;
+
+    }
+
+    .rupaBurger {
+        font-family: "Poppins";
+
+    }
+
 }
