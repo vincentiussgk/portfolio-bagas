@@ -68,14 +68,14 @@ const About = () => {
                         Web Developers
                     </div>
                     <div className={styles.creditsContainerNameRow}>
-                        <div className={styles.creditsContainerName} style={{margin:"20px 0px"}}>
+                        <a className={styles.creditsContainerName} style={{margin:"20px 0px"}} href="https://www.linkedin.com/in/vincentius-samuel/" target="_blank">
                             <span className={styles.textBold}>Samuel Gondokusumo</span> <br/>
                             <span className={styles.textReg}>Web Developer</span>
-                        </div>
-                        <div className={styles.creditsContainerName} style={{margin:"20px 0px"}}>
+                        </a>
+                        <a className={styles.creditsContainerName} style={{margin:"20px 0px"}} href="https://www.linkedin.com/in/gregorius-dimas-baskara-aba7a71aa/" target="_blank">
                             <span className={styles.textBold}>Gregorius Dimas</span> <br/>
                             <span className={styles.textReg}>Web Developer</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div>
