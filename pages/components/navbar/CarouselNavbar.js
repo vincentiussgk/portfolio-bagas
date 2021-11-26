@@ -13,7 +13,7 @@ const Navbar = () => {
           top: '10px'
         },
         bmBurgerBars: {
-          background: '#373a47'
+          background: "white"
         },
         bmBurgerBarsHover: {
           background: '#a90000'
@@ -36,7 +36,7 @@ const Navbar = () => {
           fontSize: '1.15em'
         },
         bmMorphShape: {
-          fill: '#373a47'
+          fill: "'#373a47'"
         },
         bmItemList: {
           color: '#b8b7ad',
