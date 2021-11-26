@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Navbar from './components/navbar';
 import About from "./components/about";
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <div>
     <Head>
