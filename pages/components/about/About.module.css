@@ -1,3 +1,9 @@
+.heroContainer {
+    max-height: 60rem;
+    overflow: hidden;
+
+}
+
 .hero {
     width: 100%;
 }

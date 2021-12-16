@@ -28,7 +28,7 @@ const Home = () => {
         <div>
           <div 
             style={{ 
-              backgroundImage: `url(Carousel1.png)`, 
+              backgroundImage: `url('Artboard 1.png')`, 
               height: "100vh", 
               backgroundSize: "cover",
 							display: "flex",
@@ -54,7 +54,7 @@ const Home = () => {
         <div>
           <div 
             style={{ 
-              backgroundImage: `url(Carousel2.png)`, 
+              backgroundImage: `url('Artboard 1-1.png')`, 
               height: "100vh", 
               backgroundSize: "cover",
 							display: "flex",
@@ -80,7 +80,7 @@ const Home = () => {
         <div>
           <div 
             style={{ 
-              backgroundImage: `url(Carousel3.png)`, 
+              backgroundImage: `url('Artboard 1-2.png')`, 
               height: "100vh", 
               backgroundSize: "cover",
 							display: "flex",

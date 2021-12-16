@@ -4,7 +4,9 @@ import styles from "./About.module.css";
 const About = () => {
     return (
         <div>
-            <img src="AboutHero.png" className={styles.hero} />
+            <div className={styles.heroContainer}>
+                <img src="AboutBanner.png" className={styles.hero} />
+            </div>
             <div className={styles.contentContainer}>
                 <div className={styles.subcontainer}>
                     <img src="FeelAsThough.png" className={styles.feelImage} />
