@@ -3,7 +3,8 @@ import styles from "./Reminisce.module.css";
 
 const Reminisce = () => {
     const [playbackButton, setPlaybackButton] = useState("pause");
-    const [video, setVideo] = useState("/VIDEO 0_0.mp4")
+    // const [video, setVideo] = useState("/VIDEO 0_0.mp4")
+    const [video, setVideo] = useState("https://www.w3schools.com/html/mov_bbb.mp4")
 
     // Get a handle to the player
 	const player       = useRef(null);
@@ -60,15 +61,16 @@ const Reminisce = () => {
             >
                 <source src={video} type='video/mp4' />
             </video>
-            <div>
+            <div className={styles.question}>
                 <div>
                     It's time to sleep.
                 </div>
-                <div>
-                    <div>
+                <hr className={styles.hr} />
+                <div className={styles.options}>
+                    <div className={styles.optionsMargin}>
                         Open Window
                     </div>
-                    <div>
+                    <div className={styles.optionsMargin}>
                         Close Window
                     </div>
                 </div>
@@ -80,18 +82,23 @@ const Reminisce = () => {
             <br/>
             
             <div className={styles.controls}>
-                {
-                    playbackButton === "pause" 
-                    ?
-                    
-                    <img src="/PAUSE-01.svg" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+                <div>
+                    {
+                        playbackButton === "pause" 
+                        ?
+                        
+                        <img src="/pause.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
 
-                    :
+                        :
 
-                    <img src="/PLAY.svg" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
-                    
-                }
-                <input type="range" className={styles.input} id="volume-bar" title="volume" min="0" max="1" step="0.1" value="1" ref={volumeBar} onChange={onVolumeChange} />
+                        <img src="/PLAY.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+                        
+                    }
+                </div>
+                <div className={styles.volumeControls}>
+                    <img src="/vOluME.png" onClick={playPauseVideo} className={styles.volumeIcon}/>
+                    <input type="range" min="0" max="1" step="0.1" ref={volumeBar} onChange={onVolumeChange} />
+                </div>
             </div>
         </div>
     )
