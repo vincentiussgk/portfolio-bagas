@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 
 import styles from "./Reminisce.module.css";
 
-
 const optionsData = [
     ["",  ["Make Tea",  "/VIDEO 1_OPTION_MAKE TEA.mp4"], ["Do Chores",  "/VIDEO_1_OPTION_DO CHORES.mp4"]] ,
     ["It's time to sleep.",  ["Open Window",  "/VIDEO 2_OPTION_OPEN WINDOW.mp4"], ["Close Window",  "/VIDEO 2_OPTION_CLOSE WINDOW.mp4"]],
