@@ -40,15 +40,45 @@ const Reminisce = () => {
   	}
   }
 
+    function showOptions() {
+        // Work out how much of the media has played via the duration and currentTime parameters
+        var percentage = Math.floor((100 / player.current.duration) * player.current.currentTime);
+        // Update the progress bar's value
+        console.log(percentage)
+        // progressBar.value = percentage;
+        // // Update the progress bar's text (for browsers that don't support the progress element)
+        // progressBar.innerHTML = percentage + '% played';
+    }
+
     return (
         <div className={styles.container}>
             <video className={styles.video} ref={player}
                 onPlay={onPlayerPlay}
                 onPause={onPlayerPause}
                 onEnded={onPlayerEnded}
+                onTimeUpdate={showOptions}
             >
                 <source src={video} type='video/mp4' />
             </video>
+            <div>
+                <div>
+                    It's time to sleep.
+                </div>
+                <div>
+                    <div>
+                        Open Window
+                    </div>
+                    <div>
+                        Close Window
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            
             <div className={styles.controls}>
                 {
                     playbackButton === "pause" 
