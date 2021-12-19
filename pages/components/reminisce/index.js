@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react'
+import { useRouter } from 'next/router'
+
 import styles from "./Reminisce.module.css";
+
 
 const optionsData = [
     ["",  ["Make Tea",  "/VIDEO 1_OPTION_MAKE TEA.mp4"], ["Do Chores",  "/VIDEO_1_OPTION_DO CHORES.mp4"]] ,
@@ -14,10 +17,12 @@ const Reminisce = () => {
     const [options, setOptions] = useState("");
     const [optionsOrder, setOptionsOrder] = useState(0);
 
+    const router = useRouter()
+
     // Get a handle to the player
 	const player       = useRef(null);
     const volumeBar    = useRef(null);
-
+    
     // Update the video volume
     const onVolumeChange = e => {
         player.current.volume = e.target.value;
@@ -32,6 +37,12 @@ const Reminisce = () => {
 		setPlaybackButton("play")
     }
 
+    const onCanPlay = () => {
+        console.log("Ready")
+        player.current.play();
+        setPlaybackButton("pause");
+    }
+
   function playPauseVideo() {
   	if (player.current.paused || player.current.ended) {
   		// Change the button to a pause button
@@ -44,12 +55,11 @@ const Reminisce = () => {
   		player.current.pause();
   	}
   }
-    console.log(video);
 
     function showOptions() {
-        let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 90 && options === ""
+        let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 3 && options === ""
         
-        if (threeSecondsBeforeEnd) {
+        if (threeSecondsBeforeEnd && optionsOrder !== 5) {
             player.current.pause()
             setOptions(optionsData[optionsOrder])
             setOptionsOrder(optionsOrder => optionsOrder + 1)
@@ -61,7 +71,12 @@ const Reminisce = () => {
         setVideo(e.target.id)
         setOptions("")
         player.current.currentTime = 0;
+        player.current.load();
         player.current.play()
+    }
+
+    const onEnded = () => {
+        router.push("/")
     }
 
     return (
@@ -70,12 +85,14 @@ const Reminisce = () => {
                 onPlay={onPlayerPlay}
                 onPause={onPlayerPause}
                 onTimeUpdate={showOptions}
+                onEnded={onEnded}
+                autoPlay
             >
                 <source src={video} type='video/mp4' />
             </video>
 
             {
-                options !== "" &&
+                options && options !== "" &&
                 <div className={styles.question}>
                     <div>
                         {options[0]}

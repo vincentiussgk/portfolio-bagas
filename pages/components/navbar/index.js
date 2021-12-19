@@ -54,13 +54,13 @@ const Navbar = () => {
             <div className={styles.innerContainer}>
                 <div>
                     <a className={styles.navItemBold} href="/">
-                        Home
+                      Home
                     </a>
                     <a className={styles.navItemBold} href="/about">
-                        About
+                      About
                     </a>
-                    <a className={styles.navItemNormal}>
-                        RUPA/MAYA
+                    <a className={styles.navItemNormal} href="https://instagram.com/rupamaya_?utm_medium=copy_link" target="_blank">
+                      RUPA/MAYA
                     </a>
                 </div>
                 <div id="wrapper" className={styles.wrapperContainer}>

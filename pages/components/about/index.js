@@ -12,9 +12,11 @@ const About = () => {
                     <img src="FeelAsThough.png" className={styles.feelImage} />
                 </div>
                 <div className={styles.subcontainer}>
-                    <button className={styles.reminisceButton}>
-                        Reminisce
-                    </button>
+                    <a href="/reminisce">
+                        <button className={styles.reminisceButton}>
+                            Reminisce
+                        </button>
+                    </a>
                 </div>
                 <div className={styles.subcontainer}>
                     Masa pandemi COVID-19 yang terjadi di seluruh dunia memaksa 

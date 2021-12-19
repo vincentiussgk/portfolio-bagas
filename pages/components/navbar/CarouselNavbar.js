@@ -63,7 +63,7 @@ const Navbar = () => {
                     <a className={styles.navItemBold} href="/about">
                         About
                     </a>
-                    <a className={styles.navItemNormal}>
+                    <a className={styles.navItemNormal} href="https://instagram.com/rupamaya_?utm_medium=copy_link" target="_blank">
                         RUPA/MAYA
                     </a>
                 </div>

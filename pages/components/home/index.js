@@ -47,9 +47,11 @@ const Home = () => {
 									}}
 								>
 									<img src="FeelAsThoughWhite.png" className={styles.feelAsThoughImage}/>
-									<button className={styles.reminisceButton}>
+									<a href="/reminisce">
+										<button className={styles.reminisceButton}>
 											Reminisce
-									</button>
+										</button>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -75,9 +77,11 @@ const Home = () => {
 									}}
 								>
 									<img src="FeelAsThoughWhite.png" className={styles.feelAsThoughImage}/>
-									<button className={styles.reminisceButton}>
+									<a href="/reminisce">
+										<button className={styles.reminisceButton}>
 											Reminisce
-									</button>
+										</button>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -103,9 +107,11 @@ const Home = () => {
 									}}
 								>
 									<img src="FeelAsThoughWhite.png" className={styles.feelAsThoughImage}/>
-									<button className={styles.reminisceButton}>
+									<a href="/reminisce">
+										<button className={styles.reminisceButton}>
 											Reminisce
-									</button>
+										</button>
+									</a>
 								</div>
 							</div>
 						</div>
