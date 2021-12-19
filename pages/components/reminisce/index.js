@@ -1,10 +1,18 @@
 import React, { useState, useRef } from 'react'
 import styles from "./Reminisce.module.css";
 
+const optionsData = [
+    ["",  ["Make Tea",  "/VIDEO 1_OPTION_MAKE TEA.mp4"], ["Do Chores",  "/VIDEO_1_OPTION_DO CHORES.mp4"]] ,
+    ["It's time to sleep.",  ["Open Window",  "/VIDEO 2_OPTION_OPEN WINDOW.mp4"], ["Close Window",  "/VIDEO 2_OPTION_CLOSE WINDOW.mp4"]],
+    ["someone's knocking.",  ["Check",  "/VIDEO 3_OPTION_CHECK THE DOOR.mp4"]],
+    ["still knocking.",  ["Answer",  "/VIDEO 4_OPTION_ANSWER.mp4"], ["Ignore",  "/VIDEO 4_OPTION_IGNORE.mp4"]]
+]
+
 const Reminisce = () => {
-    const [playbackButton, setPlaybackButton] = useState("pause");
-    // const [video, setVideo] = useState("/VIDEO 0_0.mp4")
-    const [video, setVideo] = useState("https://www.w3schools.com/html/mov_bbb.mp4")
+    const [playbackButton, setPlaybackButton] = useState("play");
+    const [video, setVideo] = useState("/VIDEO 0_0.mp4");
+    const [options, setOptions] = useState("");
+    const [optionsOrder, setOptionsOrder] = useState(0);
 
     // Get a handle to the player
 	const player       = useRef(null);
@@ -24,10 +32,6 @@ const Reminisce = () => {
 		setPlaybackButton("play")
     }
 
-    const onPlayerEnded = () => {
-        player.current.pause()
-    }	
-
   function playPauseVideo() {
   	if (player.current.paused || player.current.ended) {
   		// Change the button to a pause button
@@ -40,15 +44,24 @@ const Reminisce = () => {
   		player.current.pause();
   	}
   }
+    console.log(video);
 
     function showOptions() {
-        // Work out how much of the media has played via the duration and currentTime parameters
-        var percentage = Math.floor((100 / player.current.duration) * player.current.currentTime);
-        // Update the progress bar's value
-        console.log(percentage)
-        // progressBar.value = percentage;
-        // // Update the progress bar's text (for browsers that don't support the progress element)
-        // progressBar.innerHTML = percentage + '% played';
+        let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 90 && options === ""
+        
+        if (threeSecondsBeforeEnd) {
+            player.current.pause()
+            setOptions(optionsData[optionsOrder])
+            setOptionsOrder(optionsOrder => optionsOrder + 1)
+        }
+
+    }
+
+    const changeOption = e => {
+        setVideo(e.target.id)
+        setOptions("")
+        player.current.currentTime = 0;
+        player.current.play()
     }
 
     return (
@@ -56,31 +69,32 @@ const Reminisce = () => {
             <video className={styles.video} ref={player}
                 onPlay={onPlayerPlay}
                 onPause={onPlayerPause}
-                onEnded={onPlayerEnded}
                 onTimeUpdate={showOptions}
             >
                 <source src={video} type='video/mp4' />
             </video>
-            <div className={styles.question}>
-                <div>
-                    It's time to sleep.
-                </div>
-                <hr className={styles.hr} />
-                <div className={styles.options}>
-                    <div className={styles.optionsMargin}>
-                        Open Window
-                    </div>
-                    <div className={styles.optionsMargin}>
-                        Close Window
-                    </div>
-                </div>
-            </div>
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            
+            {
+                options !== "" &&
+                <div className={styles.question}>
+                    <div>
+                        {options[0]}
+                    </div>
+                    <hr className={styles.hr} />
+                    <div className={styles.options}>
+                        <div id={options[1][1]} onClick={changeOption} className={styles.optionsMargin}>
+                            {options[1][0]}
+                        </div>
+                        {
+                            options[2] &&
+                            <div id={options[2][1]} onClick={changeOption} className={styles.optionsMargin} >
+                                {options[2][0]}
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
             <div className={styles.controls}>
                 <div>
                     {
