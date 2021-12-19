@@ -50,7 +50,7 @@ const Reminisce = () => {
   }
 
     function showOptions() {
-        let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 40 && options === ""
+        let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 3 && options === ""
         if (threeSecondsBeforeEnd && optionsOrder !== 4) {
             player.current.pause()
             setOptions(optionsData[optionsOrder])
