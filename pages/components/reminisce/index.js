@@ -36,12 +36,6 @@ const Reminisce = () => {
 		setPlaybackButton("play")
     }
 
-    const onCanPlay = () => {
-        console.log("Ready")
-        player.current.play();
-        setPlaybackButton("pause");
-    }
-
   function playPauseVideo() {
   	if (player.current.paused || player.current.ended) {
   		// Change the button to a pause button
