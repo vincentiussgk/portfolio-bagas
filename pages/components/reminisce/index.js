@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import styles from "./Reminisce.module.css";
@@ -15,6 +15,8 @@ const Reminisce = () => {
     const [video, setVideo] = useState("/VIDEO 0_0.mp4");
     const [options, setOptions] = useState("");
     const [optionsOrder, setOptionsOrder] = useState(0);
+    const [trigger, setTrigger] = useState(true);
+    const [desktopMode, setDesktopMode] = useState(true);
 
     const router = useRouter()
 
@@ -22,7 +24,7 @@ const Reminisce = () => {
 	const player       = useRef(null);
     const volumeBar    = useRef(null);
 
-    console.log(screen)
+    // console.log(screen)
     
     // Update the video volume
     const onVolumeChange = e => {
@@ -88,9 +90,22 @@ const Reminisce = () => {
     const onEnded = () => {
         router.push("/")
     }
+    
+    useEffect(() => {
+        if (trigger) {
+            if (screen.width >= screen.height) {
+                setDesktopMode(true)
+            }
+            else {
+                setDesktopMode(false)
+            }
+            setTrigger(false);
+        }
+    }, [])
+    
 
     return (
-        <div className={styles.container}>
+        <div className={desktopMode === true ? styles.container : styles.containerMobile}>
             <video className={styles.video} ref={player}
                 onPlay={onPlayerPlay}
                 onPause={onPlayerPause}
