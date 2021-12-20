@@ -38,17 +38,16 @@
 }
 
 .mobileInstruction {
-    transform: rotate(90deg);
-    transform-origin:bottom left;
+
 
     z-index: 10;
     
     position:absolute;
-    top: -100vw;
+
     left: 0;
     
-    height:100vw;
-    width:100vh;
+    height:100vh;
+    width:100vw;
     
     background-color:#000;
     color:#fff;
