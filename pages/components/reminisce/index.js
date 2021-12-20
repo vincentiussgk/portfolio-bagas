@@ -17,6 +17,7 @@ const Reminisce = () => {
     const [optionsOrder, setOptionsOrder] = useState(0);
     const [trigger, setTrigger] = useState(true);
     const [desktopMode, setDesktopMode] = useState(true);
+    const [showInstruction, setShowInstruction] = useState(true);
 
     const router = useRouter()
 
@@ -90,74 +91,84 @@ const Reminisce = () => {
     const onEnded = () => {
         router.push("/")
     }
-    
+
     useEffect(() => {
         if (trigger) {
             if (screen.width >= screen.height) {
-                setDesktopMode(true)
+                setDesktopMode(true);
             }
             else {
-                setDesktopMode(false)
+                setDesktopMode(false);
             }
             setTrigger(false);
         }
     }, [])
     
+    console.log(showInstruction)
 
     return (
-        <div className={desktopMode === true ? styles.container : styles.containerMobile}>
-            <video className={styles.video} ref={player}
-                onPlay={onPlayerPlay}
-                onPause={onPlayerPause}
-                onTimeUpdate={showOptions}
-                onEnded={onEnded}
-                autoPlay
-            >
-                <source src={video} type='video/mp4' />
-            </video>
+        <>
+            {(desktopMode === false && showInstruction === true) &&
+                <div className={styles.mobileInstruction} onClick={() => setShowInstruction(false)}>
+                    <p className={styles.instructionParagraph}>Please Rotate Your</p>
+                    <p className={styles.instructionParagraph}>Mobile Device</p>
+                </div>
+            }
+            <div className={desktopMode === true ? styles.container : styles.containerMobile}>
+                
+                <video className={styles.video} ref={player}
+                    onPlay={onPlayerPlay}
+                    onPause={onPlayerPause}
+                    onTimeUpdate={showOptions}
+                    onEnded={onEnded}
+                    autoPlay
+                >
+                    <source src={video} type='video/mp4' />
+                </video>
 
-            {
-                options && options !== "" ?
-                <div className={styles.question} style={{opacity: 1}}>
-                    <div>
-                        {options[0]}
-                    </div>
-                    <hr className={styles.hr} />
-                    <div className={styles.options}>
-                        <div id={options[1][1]} onClick={changeOption} className={styles.optionsMargin}>
-                            {options[1][0]}
+                {
+                    options && options !== "" ?
+                    <div className={styles.question} style={{opacity: 1}}>
+                        <div>
+                            {options[0]}
                         </div>
-                        {
-                            options[2] &&
-                            <div id={options[2][1]} onClick={changeOption} className={styles.optionsMargin} >
-                                {options[2][0]}
+                        <hr className={styles.hr} />
+                        <div className={styles.options}>
+                            <div id={options[1][1]} onClick={changeOption} className={styles.optionsMargin}>
+                                {options[1][0]}
                             </div>
+                            {
+                                options[2] &&
+                                <div id={options[2][1]} onClick={changeOption} className={styles.optionsMargin} >
+                                    {options[2][0]}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                : <div className={styles.question}></div>}
+
+                <div className={styles.controls} style={{opacity: !options || options === "" ? 1 : 0}}>
+                    <div>
+                        {
+                            playbackButton === "pause" 
+                            ?
+                            
+                            <img src="/pause.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+
+                            :
+
+                            <img src="/PLAY.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+                            
                         }
                     </div>
+                    <div className={styles.volumeControls}>
+                        <img src="/vOluME.png" onClick={muteUnmuteVideo} className={styles.volumeIcon}/>
+                        <input className={styles.volumeBar} type="range" min="0" max="1" step="0.01" ref={volumeBar} onChange={onVolumeChange} />
+                    </div>
                 </div>
-            : <div className={styles.question}></div>}
 
-            <div className={styles.controls} style={{opacity: !options || options === "" ? 1 : 0}}>
-                <div>
-                    {
-                        playbackButton === "pause" 
-                        ?
-                        
-                        <img src="/pause.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
-
-                        :
-
-                        <img src="/PLAY.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
-                        
-                    }
-                </div>
-                <div className={styles.volumeControls}>
-                    <img src="/vOluME.png" onClick={muteUnmuteVideo} className={styles.volumeIcon}/>
-                    <input className={styles.volumeBar} type="range" min="0" max="1" step="0.01" ref={volumeBar} onChange={onVolumeChange} />
-                </div>
             </div>
-
-        </div>
+        </>
     )
 }
 
