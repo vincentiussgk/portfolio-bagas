@@ -80,21 +80,21 @@
 	.reminisceButton {
 		font-size: 1.3rem;
 	
-		transform: translateY(-20px);
+		transform: translateY(0);
 	}
 
 	.filledCircle {
 		width: 20px;
 		height: 20px;
 		margin: 0 15px 0 15px;
-		transform: translateY(-230px);
+		transform: translateY(-30vh);
 	}
 	
 	.emptyCircle {
 		width: 20px;
 		height: 20px;
 		margin: 0 15px 0 15px;
-		transform: translateY(-230px);
+		transform: translateY(-30vh);
 	}
 }
 
@@ -107,20 +107,20 @@
 	.reminisceButton {
 		font-size: 1.1rem;
 	
-		transform: translateY(-20px);
+		transform: translateY(0);
 	}
 
 	.filledCircle {
 		width: 15px;
 		height: 15px;
 		margin: 0 12px 0 12px;
-		transform: translateY(-280px);
+		transform: translateY(-35vh);
 	}
 	
 	.emptyCircle {
 		width: 15px;
 		height: 15px;
 		margin: 0 12px 0 12px;
-		transform: translateY(-280px);
+		transform: translateY(-35vh);
 	}
 }
