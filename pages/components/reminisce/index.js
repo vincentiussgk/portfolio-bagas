@@ -21,10 +21,14 @@ const Reminisce = () => {
     // Get a handle to the player
 	const player       = useRef(null);
     const volumeBar    = useRef(null);
+
+    console.log(screen)
     
     // Update the video volume
     const onVolumeChange = e => {
         player.current.volume = e.target.value;
+        // volumeBar.current = e.target.value;
+        console.log(volumeBar)
     }
 	
 	// Add a listener for the play and pause events so the buttons state can be updated
@@ -47,6 +51,20 @@ const Reminisce = () => {
   		setPlaybackButton("play")
   		player.current.pause();
   	}
+  }
+
+  function muteUnmuteVideo() {
+    if (player.current.volume === 0) {
+        player.current.volume = 1;
+        // volumeBar.current.value = 1;
+        
+        volumeBar.current.value = 1
+    }
+    else {
+        player.current.volume = 0;
+        // volumeBar.current.value = 0;
+        volumeBar.current.value = 0
+    }
   }
 
     function showOptions() {
@@ -84,8 +102,8 @@ const Reminisce = () => {
             </video>
 
             {
-                options && options !== "" &&
-                <div className={styles.question}>
+                options && options !== "" ?
+                <div className={styles.question} style={{opacity: 1}}>
                     <div>
                         {options[0]}
                     </div>
@@ -102,9 +120,9 @@ const Reminisce = () => {
                         }
                     </div>
                 </div>
-            }
+            : <div className={styles.question}></div>}
 
-            <div className={styles.controls}>
+            <div className={styles.controls} style={{opacity: !options || options === "" ? 1 : 0}}>
                 <div>
                     {
                         playbackButton === "pause" 
@@ -119,10 +137,11 @@ const Reminisce = () => {
                     }
                 </div>
                 <div className={styles.volumeControls}>
-                    <img src="/vOluME.png" onClick={playPauseVideo} className={styles.volumeIcon}/>
-                    <input type="range" min="0" max="1" step="0.1" ref={volumeBar} onChange={onVolumeChange} />
+                    <img src="/vOluME.png" onClick={muteUnmuteVideo} className={styles.volumeIcon}/>
+                    <input className={styles.volumeBar} type="range" min="0" max="1" step="0.01" ref={volumeBar} onChange={onVolumeChange} />
                 </div>
             </div>
+
         </div>
     )
 }
