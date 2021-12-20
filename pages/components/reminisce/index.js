@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import styles from "./Reminisce.module.css";
@@ -15,16 +15,23 @@ const Reminisce = () => {
     const [video, setVideo] = useState("/VIDEO 0_0.mp4");
     const [options, setOptions] = useState("");
     const [optionsOrder, setOptionsOrder] = useState(0);
+    const [trigger, setTrigger] = useState(true);
+    const [desktopMode, setDesktopMode] = useState(true);
+    const [showInstruction, setShowInstruction] = useState(true);
 
     const router = useRouter()
 
     // Get a handle to the player
 	const player       = useRef(null);
     const volumeBar    = useRef(null);
+
+    // console.log(screen)
     
     // Update the video volume
     const onVolumeChange = e => {
         player.current.volume = e.target.value;
+        // volumeBar.current = e.target.value;
+        console.log(volumeBar)
     }
 	
 	// Add a listener for the play and pause events so the buttons state can be updated
@@ -49,6 +56,20 @@ const Reminisce = () => {
   	}
   }
 
+  function muteUnmuteVideo() {
+    if (player.current.volume === 0) {
+        player.current.volume = 1;
+        // volumeBar.current.value = 1;
+        
+        volumeBar.current.value = 1
+    }
+    else {
+        player.current.volume = 0;
+        // volumeBar.current.value = 0;
+        volumeBar.current.value = 0
+    }
+  }
+
     function showOptions() {
         let threeSecondsBeforeEnd = player.current.duration - player.current.currentTime <= 3 && options === ""
         if (threeSecondsBeforeEnd && optionsOrder !== 4) {
@@ -71,59 +92,83 @@ const Reminisce = () => {
         router.push("/")
     }
 
-    return (
-        <div className={styles.container}>
-            <video className={styles.video} ref={player}
-                onPlay={onPlayerPlay}
-                onPause={onPlayerPause}
-                onTimeUpdate={showOptions}
-                onEnded={onEnded}
-                autoPlay
-            >
-                <source src={video} type='video/mp4' />
-            </video>
+    useEffect(() => {
+        if (trigger) {
+            if (screen.width >= screen.height) {
+                setDesktopMode(true);
+            }
+            else {
+                setDesktopMode(false);
+            }
+            setTrigger(false);
+        }
+    }, [])
+    
+    console.log(showInstruction)
 
-            {
-                options && options !== "" &&
-                <div className={styles.question}>
-                    <div>
-                        {options[0]}
-                    </div>
-                    <hr className={styles.hr} />
-                    <div className={styles.options}>
-                        <div id={options[1][1]} onClick={changeOption} className={styles.optionsMargin}>
-                            {options[1][0]}
-                        </div>
-                        {
-                            options[2] &&
-                            <div id={options[2][1]} onClick={changeOption} className={styles.optionsMargin} >
-                                {options[2][0]}
-                            </div>
-                        }
-                    </div>
+    return (
+        <>
+            {(desktopMode === false && showInstruction === true) &&
+                <div className={styles.mobileInstruction} onClick={() => setShowInstruction(false)}>
+                    <p className={styles.instructionParagraph}>Please Rotate Your</p>
+                    <p className={styles.instructionParagraph}>Mobile Device</p>
                 </div>
             }
+            <div className={desktopMode === true ? styles.container : styles.containerMobile}>
+                
+                <video className={styles.video} ref={player}
+                    onPlay={onPlayerPlay}
+                    onPause={onPlayerPause}
+                    onTimeUpdate={showOptions}
+                    onEnded={onEnded}
+                    autoPlay
+                >
+                    <source src={video} type='video/mp4' />
+                </video>
 
-            <div className={styles.controls}>
-                <div>
-                    {
-                        playbackButton === "pause" 
-                        ?
-                        
-                        <img src="/pause.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+                {
+                    options && options !== "" ?
+                    <div className={styles.question} style={{opacity: 1}}>
+                        <div>
+                            {options[0]}
+                        </div>
+                        <hr className={styles.hr} />
+                        <div className={styles.options}>
+                            <div id={options[1][1]} onClick={changeOption} className={styles.optionsMargin}>
+                                {options[1][0]}
+                            </div>
+                            {
+                                options[2] &&
+                                <div id={options[2][1]} onClick={changeOption} className={styles.optionsMargin} >
+                                    {options[2][0]}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                : <div className={styles.question}></div>}
 
-                        :
+                <div className={styles.controls} style={{opacity: !options || options === "" ? 1 : 0}}>
+                    <div>
+                        {
+                            playbackButton === "pause" 
+                            ?
+                            
+                            <img src="/pause.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
 
-                        <img src="/PLAY.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
-                        
-                    }
+                            :
+
+                            <img src="/PLAY.png" onClick={playPauseVideo} className={styles.pausePlayIcon}/>
+                            
+                        }
+                    </div>
+                    <div className={styles.volumeControls}>
+                        <img src="/vOluME.png" onClick={muteUnmuteVideo} className={styles.volumeIcon}/>
+                        <input className={styles.volumeBar} type="range" min="0" max="1" step="0.01" ref={volumeBar} onChange={onVolumeChange} />
+                    </div>
                 </div>
-                <div className={styles.volumeControls}>
-                    <img src="/vOluME.png" onClick={playPauseVideo} className={styles.volumeIcon}/>
-                    <input type="range" min="0" max="1" step="0.1" ref={volumeBar} onChange={onVolumeChange} />
-                </div>
+
             </div>
-        </div>
+        </>
     )
 }
 

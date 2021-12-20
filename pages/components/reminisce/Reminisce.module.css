@@ -1,9 +1,68 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+  
+
 .container {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+.containerMobile {
+    position:absolute;
+
+    left: 0;
+    
+    height:100vh;
+    width:100vw;
+    
+    background-color:#000;
+    color:#fff;
+
+    overflow:auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.mobileInstruction {
+    z-index: 10;
+    
+    position:absolute;
+
+    left: 0;
+    
+    height:100vh;
+    width:100vw;
+    
+    background-color:#000;
+    color:#fff;
+
+    overflow:auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2.0rem;
+    font-weight: 500;
+
+    transition-duration: 0.2s;
+}
+
+.instructionParagraph {
+    margin-block-end: 0.4rem;
+    margin-block-start: 0.4rem;
 }
 
 .video {
@@ -24,17 +83,24 @@
     color: white;
     font-weight: bold;
     font-size: 1.4rem;
-    transform: translateY(5rem);
+    opacity: 0;
+    transition-duration: 0.2s;
+    animation: 1s ease-out 0s 1 fadeIn;
 }
 
 .options {
     display: flex;
+    text-align: center;
 }
 
 .optionsMargin {
     margin: 0 3rem;
-
     cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.optionsMargin:hover, .optionsMargin:focus {
+    opacity: 0.6;
 }
 
 .hr {
@@ -61,10 +127,12 @@
     align-items: center;
     padding: 15px 15px;
     transition-duration: 0.2s;
+    opacity: 0;
+    animation: 1s ease-out 0s 1 fadeIn;
 }
 
-.controls:hover {
-    /* opacity: 0; */
+.controls {
+    
 }
 
 .volumeControls {
@@ -75,17 +143,29 @@
 .pausePlayIcon {
     width: 27px;
     height: 30px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.pausePlayIcon:hover, .pausePlayIcon:focus {
+    opacity: 0.6;
 }
 
 .volumeIcon {
     width: 27px;
     height: 30px;
     margin-right: 10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
-#volume-bar {
-    width: 50px;
+.volumeIcon:hover, .volumeIcon:focus {
+    opacity: 0.6;
+}
+
+.volumeBar {
     vertical-align: middle;
     padding:0px;
+    cursor: pointer;
 }
 
